@@ -20,7 +20,7 @@
                 "java.compile.nullAnalysis.mode": "automatic",
                 "java.configuration.updateBuildConfiguration": "automatic",
                 "java.debug.settings.onBuildFailureProceed": true,
-                "spring.profiles.active": "dev",
+                // "spring.profiles.active": "dev",
                 "files.trimTrailingWhitespace": true,
                 "editor.trimAutoWhitespace": true,
                 "editor.insertSpaces": true,
