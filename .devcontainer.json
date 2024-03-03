@@ -20,7 +20,6 @@
                 "java.compile.nullAnalysis.mode": "automatic",
                 "java.configuration.updateBuildConfiguration": "automatic",
                 "java.debug.settings.onBuildFailureProceed": true,
-                // "spring.profiles.active": "dev",
                 "files.trimTrailingWhitespace": true,
                 "editor.trimAutoWhitespace": true,
                 "editor.insertSpaces": true,
@@ -32,14 +31,12 @@
                     }
                 }
             },
-            // Add the IDs of extensions you want installed when the container is created.
             "extensions": [
                 "eamodio.gitlens", // GitLens
                 "vscjava.vscode-java-pack", // Extension Pack for Java
                 "vscjava.vscode-spring-boot-dashboard", // Spring Boot Dashboard
                 "mhutchie.git-graph", // Git Graph
                 "Cardinal90.multi-cursor-case-preserve", //case preserve for multiple cursors
-                "Gruntfuggly.todo-tree", //TODO list
                 "maptz.regionfolder",// region folder
                 "vmware.vscode-spring-boot" //springboot tools
             ]
