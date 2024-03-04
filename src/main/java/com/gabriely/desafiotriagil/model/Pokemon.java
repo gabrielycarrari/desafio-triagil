@@ -7,10 +7,14 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,6 +23,8 @@ import javax.validation.constraints.NotEmpty;
 public class Pokemon {
 
     // @Schema(hidden = true)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
     @NotEmpty(message = "O campo name é obrigatório.")
@@ -32,9 +38,9 @@ public class Pokemon {
     private String name;
 
     // @Schema(hidden = true)
-    private Integer height;
+    private int height;
 
     // @Schema(hidden = true)
-    private Integer weight;
+    private int weight;
 
 }
