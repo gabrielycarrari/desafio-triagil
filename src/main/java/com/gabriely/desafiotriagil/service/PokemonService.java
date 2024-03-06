@@ -42,12 +42,11 @@ public class PokemonService {
     // }
 
 
-    public PokemonDTO create(@Valid @NotNull PokemonDTO pokemon){
-        Pokemon pokemonEntity = pokemonMapper.toEntity(pokemon);
-        if (pokemonEntity == null) {
-            throw new IllegalStateException("Falha ao converter Pokemon em PokemonEntity.");
+    public PokemonDTO create(@Valid @NotNull Pokemon pokemon){
+        if (pokemon == null) {
+            throw new IllegalStateException("O pokemon não pode estar vazio.");
         }
-        return pokemonMapper.toDTO(pokemonRepository.save(pokemonEntity));
+        return pokemonMapper.toDTO(pokemonRepository.save(pokemon));
     }
 
 
@@ -63,6 +62,10 @@ public class PokemonService {
                 recordFound.setWeight(pokemon.weight());
                 return pokemonMapper.toDTO(pokemonRepository.save(recordFound));
             }).orElseThrow(() -> new RecordNotFoundException(id));
+    }
+
+    public Pokemon findByName(String name){
+        return this.pokemonRepository.findByName(name);
     }
 
 }

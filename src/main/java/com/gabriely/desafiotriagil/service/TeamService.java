@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 
 import com.gabriely.desafiotriagil.dto.TeamDTO;
 import com.gabriely.desafiotriagil.dto.mapper.TeamMapper;
+import com.gabriely.desafiotriagil.exception.NegocioException;
 import com.gabriely.desafiotriagil.exception.RecordNotFoundException;
 import com.gabriely.desafiotriagil.model.Team;
 import com.gabriely.desafiotriagil.repository.TeamRepository;
@@ -36,23 +37,17 @@ public class TeamService {
             .collect(Collectors.toList());
     }
 
-    // public TeamDTO findById(@NotNull @Positive Long id) {
-    //     return teamRepository.findById(id).map(teamMapper::toDTO)
-    //             .orElseThrow(() -> new RecordNotFoundException(id));
-    // }
-
-    public TeamDTO create(@Valid @NotNull TeamDTO team){
-        Team teamEntity = teamMapper.toEntity(team);
-        if (teamEntity == null) {
-            throw new IllegalStateException("Falha ao converter Team em TeamEntity.");
+    public TeamDTO create(@Valid @NotNull Team team){
+        // Team teamEntity = teamMapper.toEntity(team);
+        if (team == null) {
+            throw new NegocioException("O team não pode ser nulo.");
         }
-        return teamMapper.toDTO(teamRepository.save(teamEntity));
+        return teamMapper.toDTO(teamRepository.save(team));
     }
-
 
     public TeamDTO update(@NotNull @Positive Long id, @Valid @NotNull TeamDTO team) {
         if (id == null) {
-            throw new IllegalStateException("O campo id não pode ser nulo.");
+            throw new NegocioException("O campo id não pode ser nulo.");
         }
         return teamRepository.findById(id)
             .map(recordFound-> {
@@ -60,6 +55,15 @@ public class TeamService {
                 recordFound.setPokemons(team.pokemons());
                 return teamMapper.toDTO(teamRepository.save(recordFound));
             }).orElseThrow(() -> new RecordNotFoundException(id));
+    }
+
+    public TeamDTO findById(@NotNull @Positive Long id) {
+        return teamRepository.findById(id).map(teamMapper::toDTO)
+                .orElseThrow(() -> new RecordNotFoundException(id));
+    }
+
+    public List<Team> findByOwner(String owner){
+        return this.teamRepository.findByOwner(owner);
     }
 
 }
