@@ -44,6 +44,7 @@ public class TeamService {
         return teamMapper.toDTO(teamRepository.save(team));
     }
 
+    // TODO: Verificar se precisa e se está correto
     public TeamDTO update(@NotNull @Positive Long id, @Valid @NotNull TeamDTO team) {
         if (id == null) {
             throw new NegocioException("O campo id não pode ser nulo.");

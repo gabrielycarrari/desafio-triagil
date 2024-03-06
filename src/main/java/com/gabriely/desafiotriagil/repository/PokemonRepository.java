@@ -5,8 +5,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gabriely.desafiotriagil.model.Pokemon;
 
-
-
 public interface PokemonRepository extends JpaRepository<Pokemon, Long>{
     @Transactional(readOnly = true)
     Pokemon findByName(String name);

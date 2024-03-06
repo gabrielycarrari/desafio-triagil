@@ -50,6 +50,7 @@ public class TeamController {
     @Autowired
     protected TeamMapper teamMapper;
 
+    // TODO: Add comentários
     
     @GetMapping
     /* #region Swagger Settings */
@@ -96,7 +97,6 @@ public class TeamController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getMessage()));
         }
     }
-
 
     @PostMapping
 	/* #region Swagger Settings */

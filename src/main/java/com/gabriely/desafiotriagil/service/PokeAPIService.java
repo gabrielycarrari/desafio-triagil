@@ -21,6 +21,7 @@ public class PokeAPIService {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
+    // TODO: add comentários
     public Pokemon getPokemon(String name) {
         String urlPokemon = url + "/pokemon/" + name;
         try {

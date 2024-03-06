@@ -36,6 +36,7 @@ public class PokemonService {
             .collect(Collectors.toList());
     }
 
+    // TODO: Verificar necessidade
     // public PokemonDTO findById(@NotNull @Positive Long id) {
     //     return pokemonRepository.findById(id).map(pokemonEntityMapper::toEntity)
     //             .orElseThrow(() -> new RecordNotFoundException(id));
@@ -49,7 +50,7 @@ public class PokemonService {
         return pokemonMapper.toDTO(pokemonRepository.save(pokemon));
     }
 
-
+    // TODO: Verificar se precisa e se está correto
     public PokemonDTO update(@NotNull @Positive Long id, @Valid @NotNull PokemonDTO pokemon) {
         if (id == null) {
             throw new IllegalStateException("O campo id não pode ser nulo.");
