@@ -38,7 +38,6 @@ public class TeamService {
     }
 
     public TeamDTO create(@Valid @NotNull Team team){
-        // Team teamEntity = teamMapper.toEntity(team);
         if (team == null) {
             throw new NegocioException("O team não pode ser nulo.");
         }
@@ -58,6 +57,9 @@ public class TeamService {
     }
 
     public TeamDTO findById(@NotNull @Positive Long id) {
+        if (id == null) {
+            throw new NegocioException("O campo id não pode ser nulo.");
+        }
         return teamRepository.findById(id).map(teamMapper::toDTO)
                 .orElseThrow(() -> new RecordNotFoundException(id));
     }
