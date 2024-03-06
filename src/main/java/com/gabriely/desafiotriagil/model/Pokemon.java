@@ -1,6 +1,7 @@
 package com.gabriely.desafiotriagil.model;
 
-import io.swagger.v3.oas.annotations.media.Schema;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,8 +9,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -20,27 +19,22 @@ import jakarta.validation.constraints.NotEmpty;
 @AllArgsConstructor
 @EqualsAndHashCode
 @SuperBuilder
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Pokemon {
 
-    // @Schema(hidden = true)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("id")
 	private Long id;
 
     @NotEmpty(message = "O campo name é obrigatório.")
     @NotBlank(message = "O campo name não pode ser vazio.")
-    @Schema(
-        description = "Nome do pokemon",
-        name = "nome",
-        type = "String",
-        example = "pikachu"
-    )
+    @JsonProperty("name")
     private String name;
 
-    // @Schema(hidden = true)
+    @JsonProperty("height")
     private int height;
 
-    // @Schema(hidden = true)
+    @JsonProperty("weight")
     private int weight;
 
 }
