@@ -41,21 +41,44 @@ Este repositório contém uma solução para o desafio proposto pela Triágil, q
    ```bash
    git clone https://github.com/gabrielycarrari/desafio-triagil.git
    ```
+   
 2. **Dockerfile e Compose:**
    - O Dockerfile e o docker-compose.yml estão incluídos no repositório para facilitar a implantação da API em contêineres Docker. Certifique-se de ter o Docker instalado em sua máquina e execute os comandos apropriados para construir e implantar os contêineres.
-   - O repositório também está configurado para uso com DevContainer.
+   - O repositório também está configurado para uso com Dev Containers, uma extensão do Visual Studio Code que permite o uso de um contêiner Docker como um ambiente de desenvolvimento.
+      - Para usá-lo, basta instalar a extensão Dev Containers e usar a opção "Open Folder in Container" com a pasta na qual o projeto foi clonado. Com isso, o container será criado ou iniciado automaticamente.
+      - Certifique-se de que o Docker Desktop esteja instalado e em execução em sua máquina antes de iniciar o Dev Containers.
    - O projeto inclui dois contêiners Docker:
      - **desafio-backend**: API desenvolvida em Java com Spring Boot e Maven, rodando na porta 8181.
      - **desafio-postgres**: banco de dados PostgreSQL, cujo nome do banco é "desafiodb", rodando na porta 5433.
 
-3. **Instalar as dependências** //TODO
 
-4. **Executar a Aplicação:** //TODO
+3. **Instalar as dependências**
+   - Caso seja a primeira execução instale as dependências pelo terminal:
+     
+      ```bash
+      mvn install
+      ```
 
-5. **Acessar a API:**
-   - Após a execução, a API estará disponível em `http://localhost:8181`.
+4. **Executar a Aplicação e Acessar a API**
+   - Feito isso, basta executar a aplicação.
+   - A API estará disponível em `http://localhost:8181`.
 
-6. **Testar a API:** //TODO
+
+5. **Testar a API:**
+   - Para testar os endpoints da API você pode utilizar ferramentas populares, tais como Postman, cURL e Insomnia.
+   - Além disso, o projeto está integrado com o Swagger, uma ferramenta de documentação e teste de API.
+      - Ele vai fornecer uma interface interativa com detalhes sobre cada endpoint, parâmetros necessários e exemplos de solicitações para testar e entender o comportamento da API.
+      - Para utilizá-la basta acessar [http://localhost:8181/swagger-ui/index.html](http://localhost:8181/swagger-ui/index.html),
+
+
+## Exemplos
+#### Criar Time (input): /api/teams //TODO
+
+#### Listar Todos os Times (output): /api/teams //TODO
+
+#### Listar Todos os Times por Usuário (output): /api/teams/{user} //TODO
+
+#### Buscar Time por ID Única (output): /api/teams/id/{id} //TODO
 
 
 ## Observações
