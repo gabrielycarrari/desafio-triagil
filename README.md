@@ -2,7 +2,7 @@
 
 Este repositório contém uma solução para o desafio proposto pela Triágil, que tem como objetivo testar os conhecimentos em programação, bem como a capacidade de utilizar recursos online. Esta solução consiste no desenvolvimento de uma API utilizando o Java Spring Framework (Spring Framework) e a ferramenta Java Spring Boot (Spring Boot) para criar e gerenciar times de Pokémon, consumindo a API externa [pokeapi.co](https://pokeapi.co/).
 
-## Funcionalidades da API
+## ⚙️ Funcionalidades da API
 
 1. **Criar Time de Pokémon:**
    - Endpoint: `/api/teams`
@@ -34,8 +34,10 @@ Este repositório contém uma solução para o desafio proposto pela Triágil, q
      - ID única do time
    - Descrição: Retorna as informações de um time específico com base na sua ID única.
    - Exemplo: //TODO
+---
 
-## Instruções para Execução
+
+## 🚀 Instruções para Execução
 
 1. **Clonar o Repositório:**
    ```bash
@@ -69,9 +71,9 @@ Este repositório contém uma solução para o desafio proposto pela Triágil, q
    - Além disso, o projeto está integrado com o Swagger, uma ferramenta de documentação e teste de API.
       - Ele vai fornecer uma interface interativa com detalhes sobre cada endpoint, parâmetros necessários e exemplos de solicitações para testar e entender o comportamento da API.
       - Para utilizá-la basta acessar [http://localhost:8181/swagger-ui/index.html](http://localhost:8181/swagger-ui/index.html),
+---
 
-
-## Exemplos
+## 💻 Exemplos
 #### Criar Time (input): /api/teams //TODO
 
 #### Listar Todos os Times (output): /api/teams //TODO
@@ -79,10 +81,28 @@ Este repositório contém uma solução para o desafio proposto pela Triágil, q
 #### Listar Todos os Times por Usuário (output): /api/teams/{user} //TODO
 
 #### Buscar Time por ID Única (output): /api/teams/id/{id} //TODO
+---
 
-
-## Observações //TODO: adicionar parte autor
+## 📝 Observações
 
 - Esta solução foi desenvolvida por Gabriely Machado Carrari, como resposta ao desafio proposto pela Triágil.
 - Para mais detalhes sobre o desafio, acesse o [link do desafio](https://github.com/triagilbr/desafio-triagil).
 - Qualquer dúvida ou problema com a solução, entre em contato via gabrielycarrari@gmail.com.
+---
+   
+## 👩‍💻 Autora 
+  <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/73599857?v=4" width="100px;" alt=""/>
+ 
+
+Feito com ❤️ por Gabriely Machado Carrari </br>
+Entre em contato! 👋🏽
+
+
+
+[![Static Badge](https://img.shields.io/badge/Gabriely%20Carrari-%230A66C2?logo=linkedIn&link=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fgabriely-carrari%2F)](https://www.linkedin.com/in/gabriely-carrari/)
+[![Static Badge](https://img.shields.io/badge/gabrielycarrari%40gmail.com-%23EA4335?logo=gmail&logoColor=white&link=mailto%3Agabrielycarrari%40gmail.com)](mailto:gabrielycarrari@gmail.com)
+
+---
+
+## 📃 Licença //TODO
+Esse repositório está licenciado pela MIT LICENSE. Para mais informações detalhadas, leia o arquivo LICENSE contido nesse repositório.
