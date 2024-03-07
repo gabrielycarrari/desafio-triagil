@@ -5,24 +5,30 @@ Este repositório contém uma solução para o desafio proposto pela Triágil, q
 ## Funcionalidades da API
 
 1. **Criar Time de Pokémon:**
-   - Endpoint: `/criar_time` //TODO: ajustar endpoint
+   - Endpoint: `/api/teams`
    - Método: `POST`
    - Parâmetros:
      - Lista de Pokémon
-     - Nome de Usuário
-   - Descrição: Recebe uma lista de Pokémon e um nome de usuário, busca as informações sobre esses Pokémon na pokeAPI e salva o time. Retorna uma mensagem de validação e uma ID única para identificar o time.
+     - Nome de Usuário/Dono
+   - Descrição: Recebe uma lista de Pokémon e um nome de usuário/dono, busca as informações sobre esses Pokémon no banco de dados e na pokeAPI e salva o time. Retorna uma mensagem de validação e uma ID única para identificar o time.
    - Exemplo: //TODO
 
 2. **Listar Todos os Times Registrados:**
-   - Endpoint: `/times` //TODO: ajustar endpoint
+   - Endpoint: `/api/teams`
    - Método: `GET`
    - Descrição: Retorna todos os times de Pokémon registrados na API.
    - Exemplo: //TODO
 
-3. **Listar Todos os Times por Usuário** //TODO
+3. **Listar Todos os Times por Usuário**
+   - Endpoint: `/api/teams/{user}`
+   - Método: `GET`
+   - Parâmetro:
+     - Nome de Usuário/Dono
+   - Descrição: Retorna todos os times de Pokémon registrados na API por um usuário/dono.
+   - Exemplo: //TODO
 
 4. **Buscar Time por ID Única:**
-   - Endpoint: `/time/{id}` //TODO: ajustar endpoint
+   - Endpoint: `api/teams/id/{id}`
    - Método: `GET`
    - Parâmetros:
      - ID única do time
