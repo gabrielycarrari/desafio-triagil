@@ -11,6 +11,7 @@ import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.servers.Server;
 
+/* Arquivo de configuração do Swagger */
 @Configuration
 public class OpenAPIConfig {
 

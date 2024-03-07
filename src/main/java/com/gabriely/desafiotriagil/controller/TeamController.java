@@ -1,7 +1,9 @@
 package com.gabriely.desafiotriagil.controller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -50,8 +52,7 @@ public class TeamController {
     @Autowired
     protected TeamMapper teamMapper;
 
-    // TODO: Add comentários
-    
+    /* Método/Endpoint que lista todos os times do banco de dados */
     @GetMapping
     /* #region Swagger Settings */
     @Operation(summary = "Retorna lista de todos os times registrados", description = "Descrição", responses = {
@@ -63,6 +64,8 @@ public class TeamController {
     public ResponseEntity<?> list() {
         try {
             List<TeamDTO> teams = teamService.list();
+
+            /* Verifica se existe algum time registrado, se não dispara um erro NOT_FOUND */
             if (teams.isEmpty()) {
                 String message = "Nenhum time registrado.";
                 System.err.println(message);
@@ -75,6 +78,8 @@ public class TeamController {
         }
     }
 
+
+    /* Método/Endpoint que lista todos os times do banco de dados por um usuário/dono */
     @GetMapping("/{user}")
     /* #region Swagger Settings */
     @Operation(summary = "Retorna o time registrado por usuário", description = "Descrição", responses = {
@@ -86,6 +91,8 @@ public class TeamController {
     public ResponseEntity<?> teamByUser(@PathVariable @NotNull String user) {
         try {
             List<Team> teams = teamService.findByOwner(user);
+
+            /* Verifica se existe algum time registrado, se não dispara um erro NOT_FOUND */
             if (teams.isEmpty()) {
                 String message = "Nenhum time encontrado.";
                 System.err.println(message);
@@ -98,6 +105,8 @@ public class TeamController {
         }
     }
 
+
+    /* Método/Endpoint que cria um time no banco de dados */
     @PostMapping
 	/* #region Swagger Settings */
     @Operation(summary = "Cria um novo Team", responses = {
@@ -111,32 +120,40 @@ public class TeamController {
         try {
             Team team = new Team();
 
+            /* Verifica se foi passado o dono do time */
             if (teamRequest.getOwner() == "")
                 throw new NegocioException("O time deve ter um dono.");
 
             team.setOwner(teamRequest.getOwner());
 
+            /* Verifica se foi passado pelo menos um pokémon */
             if (teamRequest.getPokemons().isEmpty())
-                throw new NegocioException("A Lista de pokemons deve ter pelo menos um Item.");
+                throw new NegocioException("O time deve ter pelo menos um pokémon.");
 
             team.setPokemons(new ArrayList<>());
 
+            Set<String> listPokemonsName = new HashSet<>();
             for (String namePokemon : teamRequest.getPokemons()){
-                //Verifica se já existe esse pokémon no banco
-                //Se sim, apenas adiciona ele na lista
-                //Se não, procura as informações na API externa primeiro
+
+                /* Tenta adicionar o pokémons na lista,
+                 * se não conseguir é porque ele já foi adicionado antes e está repetido,
+                 * dispara erro.
+                 */
+                if (!listPokemonsName.add(namePokemon)) {
+                    throw new NegocioException(String.format(
+                        "Pokémon %s já está no time e não pode ser repetido.", namePokemon));
+                }
+
+                /* Verifica se já existe esse pokémon no banco
+                 * Se sim, apenas adiciona ele na lista
+                 * Se não, procura as informações na API externa
+                 */
                 Pokemon pokemonBanco = pokemonService.findByName(namePokemon);
                 if(pokemonBanco != null){
                     team.getPokemons().add(pokemonBanco);
                 }else{
-                    try{
-                        Pokemon pokemonAPI = pokeAPIService.getPokemon(namePokemon);
-                        team.getPokemons().add(pokemonAPI);
-
-                    } catch (NegocioException e) {
-                        e.printStackTrace();
-                        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getMessage()));
-                    }
+                    Pokemon pokemonAPI = pokeAPIService.getPokemon(namePokemon);
+                    team.getPokemons().add(pokemonAPI);
                 }
             }
             TeamDTO teamDTO = teamService.create(team);
@@ -144,9 +161,13 @@ public class TeamController {
         }catch (NegocioException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getMessage()));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("Ocorreu um erro: " + e.getMessage()));
         }
     }
 
+    /* Método/Endpoint para encontrar um time no banco de dados pelo seu id */
     @GetMapping("/id/{id}")
     /* #region Swagger Settings */
     @Operation(summary = "Retorna o time pela sua id única", description = "Descrição", responses = {
@@ -164,7 +185,7 @@ public class TeamController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(e.getMessage()));
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getMessage()));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("Ocorreu um erro: " + e.getMessage()));
         }
 
     }

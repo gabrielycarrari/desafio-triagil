@@ -5,14 +5,13 @@ import java.util.stream.Collectors;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import com.gabriely.desafiotriagil.dto.PokemonDTO;
 import com.gabriely.desafiotriagil.dto.mapper.PokemonMapper;
-import com.gabriely.desafiotriagil.exception.RecordNotFoundException;
+import com.gabriely.desafiotriagil.exception.NegocioException;
 import com.gabriely.desafiotriagil.model.Pokemon;
 import com.gabriely.desafiotriagil.repository.PokemonRepository;
 
@@ -29,6 +28,10 @@ public class PokemonService {
         this.pokemonMapper = pokemonMapper;
     }
 
+    /**
+     * Método que lista todos os pokémons do banco de dados
+     * @return Lista de todos os pokémons do banco
+     */
     public List<PokemonDTO> list(){
         return pokemonRepository.findAll()
             .stream()
@@ -36,35 +39,25 @@ public class PokemonService {
             .collect(Collectors.toList());
     }
 
-    // TODO: Verificar necessidade
-    // public PokemonDTO findById(@NotNull @Positive Long id) {
-    //     return pokemonRepository.findById(id).map(pokemonEntityMapper::toEntity)
-    //             .orElseThrow(() -> new RecordNotFoundException(id));
-    // }
 
-
+    /**
+     * Método para criar um pokémon no banco de dados
+     * @param pokemon - pokémon a ser criado
+     * @return Pokemon criado
+     * @throws NegocioException - Exceção lançada quando o pokémon está vazio
+     */
     public PokemonDTO create(@Valid @NotNull Pokemon pokemon){
         if (pokemon == null) {
-            throw new IllegalStateException("O pokemon não pode estar vazio.");
+            throw new NegocioException("O pokemon não pode estar vazio.");
         }
         return pokemonMapper.toDTO(pokemonRepository.save(pokemon));
     }
 
-    // TODO: Verificar se precisa e se está correto
-    public PokemonDTO update(@NotNull @Positive Long id, @Valid @NotNull PokemonDTO pokemon) {
-        if (id == null) {
-            throw new IllegalStateException("O campo id não pode ser nulo.");
-        }
-        return pokemonRepository.findById(id)
-            .map(recordFound-> {
-                recordFound.setId(pokemon.id());
-                recordFound.setName(pokemon.name());
-                recordFound.setHeight(pokemon.height());
-                recordFound.setWeight(pokemon.weight());
-                return pokemonMapper.toDTO(pokemonRepository.save(recordFound));
-            }).orElseThrow(() -> new RecordNotFoundException(id));
-    }
-
+    /**
+     * Método para encontrar um pokémon no banco de dados pelo seu nome
+     * @param name - nome do pokémon a ser buscado
+     * @return Pokemon encontrado no banco de dados
+     */
     public Pokemon findByName(String name){
         return this.pokemonRepository.findByName(name);
     }

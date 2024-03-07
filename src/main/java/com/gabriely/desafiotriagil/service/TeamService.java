@@ -30,6 +30,10 @@ public class TeamService {
         this.teamMapper = teamMapper;
     }
 
+    /**
+     * Método que lista todos os times do banco de dados
+     * @return Lista de todos os times do banco
+     */
     public List<TeamDTO> list(){
         return teamRepository.findAll()
             .stream()
@@ -37,6 +41,12 @@ public class TeamService {
             .collect(Collectors.toList());
     }
 
+    /**
+     * Método para criar um time no banco de dados
+     * @param team - time a ser criado
+     * @return Team criado
+     * @throws NegocioException - Exceção lançada quando o team é null
+     */
     public TeamDTO create(@Valid @NotNull Team team){
         if (team == null) {
             throw new NegocioException("O team não pode ser nulo.");
@@ -44,19 +54,13 @@ public class TeamService {
         return teamMapper.toDTO(teamRepository.save(team));
     }
 
-    // TODO: Verificar se precisa e se está correto
-    public TeamDTO update(@NotNull @Positive Long id, @Valid @NotNull TeamDTO team) {
-        if (id == null) {
-            throw new NegocioException("O campo id não pode ser nulo.");
-        }
-        return teamRepository.findById(id)
-            .map(recordFound-> {
-                recordFound.setOwner(team.owner());
-                recordFound.setPokemons(team.pokemons());
-                return teamMapper.toDTO(teamRepository.save(recordFound));
-            }).orElseThrow(() -> new RecordNotFoundException(id));
-    }
-
+    /**
+     * Método para encontrar um time no banco de dados pelo seu id
+     * @param id - id do time
+     * @return Team encontrado
+     * @throws NegocioException - Exceção lançada quando o campo id é null
+     * @throws RecordNotFoundException - Exceção lançada quando o time não é encontrado
+     */
     public TeamDTO findById(@NotNull @Positive Long id) {
         if (id == null) {
             throw new NegocioException("O campo id não pode ser nulo.");
@@ -65,6 +69,11 @@ public class TeamService {
                 .orElseThrow(() -> new RecordNotFoundException(id));
     }
 
+    /**
+     * Método para encontrar todos os times do banco de dados por um usuário/dono
+     * @param owner - dono do time
+     * @return Lista com os times encontrados
+     */
     public List<Team> findByOwner(String owner){
         return this.teamRepository.findByOwner(owner);
     }
