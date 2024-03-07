@@ -29,7 +29,7 @@ import lombok.experimental.SuperBuilder;
 public class Team {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO) // TODO: verificar isso
     private Long id;
 
     @NotEmpty(message = "O campo owner é obrigatório.")
