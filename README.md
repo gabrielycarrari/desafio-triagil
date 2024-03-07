@@ -81,7 +81,7 @@ Este repositório contém uma solução para o desafio proposto pela Triágil, q
 #### Buscar Time por ID Única (output): /api/teams/id/{id} //TODO
 
 
-## Observações
+## Observações //TODO: adicionar parte autor
 
 - Esta solução foi desenvolvida por Gabriely Machado Carrari, como resposta ao desafio proposto pela Triágil.
 - Para mais detalhes sobre o desafio, acesse o [link do desafio](https://github.com/triagilbr/desafio-triagil).
