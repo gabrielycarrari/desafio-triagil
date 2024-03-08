@@ -44,15 +44,16 @@ Este repositório contém uma solução para o desafio proposto pela Triágil, q
    git clone https://github.com/gabrielycarrari/desafio-triagil.git
    ```
    
-2. **Dockerfile e Compose:**
-   - O Dockerfile e o docker-compose.yml estão incluídos no repositório para facilitar a implantação da API em contêineres Docker. Certifique-se de ter o Docker instalado em sua máquina e execute os comandos apropriados para construir e implantar os contêineres.
-   - O repositório também está configurado para uso com Dev Containers, uma extensão do Visual Studio Code que permite o uso de um contêiner Docker como um ambiente de desenvolvimento.
-      - Para usá-lo, basta instalar a extensão Dev Containers e usar a opção "Open Folder in Container" com a pasta na qual o projeto foi clonado. Com isso, o container será criado ou iniciado automaticamente.
-      - Certifique-se de que o Docker Desktop esteja instalado e em execução em sua máquina antes de iniciar o Dev Containers.
+2. **Iniciar os Containers**
    - O projeto inclui dois contêiners Docker:
      - **desafio-backend**: API desenvolvida em Java com Spring Boot e Maven, rodando na porta 8181.
      - **desafio-postgres**: banco de dados PostgreSQL, cujo nome do banco é "desafiodb", rodando na porta 5433.
-
+   - O Dockerfile e o docker-compose.yml estão incluídos no repositório para facilitar a implantação da API em contêineres Docker. Para isso, é necessário que você tenha o Docker instalado em sua máquina e execute os comandos apropriados para construir e implantar os contêineres.
+      - 
+   - O repositório também está configurado para uso com Dev Containers, uma extensão do Visual Studio Code que permite o uso de um contêiner Docker como um ambiente de desenvolvimento.
+      - Para usá-lo, basta instalar a extensão Dev Containers no Visual Studio Code e usar a opção "Open Folder in Container" com a pasta na qual o projeto foi clonado. Com isso, o container será criado ou iniciado automaticamente.
+      - Certifique-se de que o Docker Desktop esteja instalado e em execução em sua máquina antes de iniciar o Dev Containers.
+   
 
 3. **Instalar as dependências**
    - Caso seja a primeira execução instale as dependências pelo terminal:
