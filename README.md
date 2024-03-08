@@ -51,12 +51,12 @@ Este repositório contém uma solução para o desafio proposto pela Triágil, q
    - O Dockerfile e o docker-compose.yml estão incluídos no repositório para facilitar a implantação da API em containers Docker. Para isso, é necessário que você tenha o Docker instalado em sua máquina e execute os comandos apropriados para construir e implantar os containers.
       - Para instruções detalhadas sobre como iniciar os containers Docker para este projeto, consulte o arquivo [docker_instructions.md](docs/docker_instructions.md) no diretório /docs.
    - O repositório também está configurado para uso com Dev Containers, uma extensão do Visual Studio Code que permite o uso de um container Docker como um ambiente de desenvolvimento.
-      - Para usá-lo, basta instalar a extensão Dev Containers no Visual Studio Code e usar a opção "Open Folder in Container" com a pasta na qual o projeto foi clonado. Com isso, o container será criado ou iniciado automaticamente.
-      - Certifique-se de que o Docker Desktop esteja instalado e em execução em sua máquina antes de iniciar o Dev Containers.
+      - Para usá-lo, basta instalar a extensão Dev Containers no Visual Studio Code e usar a opção "Open Folder in Container" com o diretório no qual o projeto foi clonado. Com isso, o container será criado ou iniciado automaticamente.
+      - Certifique-se de que o Docker esteja instalado e em execução em sua máquina antes de iniciar o Dev Containers.
    
 
 3. **Instalar as dependências**
-   - Caso seja a primeira execução instale as dependências pelo terminal:
+   - Caso seja a primeira execução instale as dependências pelo terminal do container:
      
       ```bash
       mvn install
