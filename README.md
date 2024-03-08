@@ -64,6 +64,11 @@ Este repositório contém uma solução para o desafio proposto pela Triágil, q
 
 4. **Executar a Aplicação e Acessar a API**
    - Feito isso, basta executar a aplicação.
+      - Pelo terminal do container:
+        ```bash
+           mvn spring-boot:run
+        ``` 
+      - Ou caso esteja utilizando o Visual Studio Code, apenas clique no botão de executar a aplicação. 
    - A API estará disponível em `http://localhost:8181`.
 
 
