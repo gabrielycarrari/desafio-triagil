@@ -11,13 +11,13 @@ Este repositório contém uma solução para o desafio proposto pela Triágil, q
      - Lista de Pokémon
      - Nome de Usuário/Dono
    - Descrição: Recebe uma lista de Pokémon e um nome de usuário/dono, busca as informações sobre esses Pokémon no banco de dados e na pokeAPI e salva o time. Retorna uma mensagem de validação e uma ID única para identificar o time.
-   - Exemplo: //TODO
+   - Exemplo: [Ver exemplo abaixo](#criar-time-input-apiteams)
 
 2. **Listar Todos os Times Registrados:**
    - Endpoint: `/api/teams`
    - Método: `GET`
    - Descrição: Retorna todos os times de Pokémon registrados na API.
-   - Exemplo: //TODO
+   - Exemplo: [Ver exemplo abaixo](#listar-todos-os-times-output-apiteams)
 
 3. **Listar Todos os Times por Usuário**
    - Endpoint: `/api/teams/{user}`
@@ -25,7 +25,7 @@ Este repositório contém uma solução para o desafio proposto pela Triágil, q
    - Parâmetro:
      - Nome de Usuário/Dono
    - Descrição: Retorna todos os times de Pokémon registrados na API por um usuário/dono.
-   - Exemplo: //TODO
+   - Exemplo: [Ver exemplo abaixo](#listar-todos-os-times-por-usu%C3%A1rio-output-apiteamsuser)
 
 4. **Buscar Time por ID Única:**
    - Endpoint: `api/teams/id/{id}`
@@ -33,7 +33,7 @@ Este repositório contém uma solução para o desafio proposto pela Triágil, q
    - Parâmetros:
      - ID única do time
    - Descrição: Retorna as informações de um time específico com base na sua ID única.
-   - Exemplo: //TODO
+   - Exemplo: [Ver exemplo abaixo](#buscar-time-por-id-%C3%BAnica-output-apiteamsidid)
 ---
 
 
@@ -74,20 +74,95 @@ Este repositório contém uma solução para o desafio proposto pela Triágil, q
 ---
 
 ## 💻 Exemplos
-#### Criar Time (input): /api/teams //TODO
+#### Criar Time (input): /api/teams
+```json
+{
+  "user": "gabriely",
+  "team": [
+    "blastoise",
+    "pikachu",
+    "charizard",
+    "venusaur",
+    "lapras",
+    "dragonite"
+  ]
+}
+```
 
-#### Listar Todos os Times (output): /api/teams //TODO
 
-#### Listar Todos os Times por Usuário (output): /api/teams/{user} //TODO
+#### Listar Todos os Times (output): /api/teams
+//TODO
+```json
+{
+  "owner": "gabriely",
+  "pokemons": [
+    {
+      "id": 9,
+      "name": "blastoise",
+      "weight": 855,
+      "height": 16
+    },
+    {
+      "id": 25,
+      "name": "pikachu",
+      "weight": 60,
+      "height": 4
+    }
+  ]
+}
+```
 
-#### Buscar Time por ID Única (output): /api/teams/id/{id} //TODO
+#### Listar Todos os Times por Usuário (output): /api/teams/{user}
+//TODO
+```json
+{
+  "owner": "gabriely",
+  "pokemons": [
+    {
+      "id": 9,
+      "name": "blastoise",
+      "weight": 855,
+      "height": 16
+    },
+    {
+      "id": 25,
+      "name": "pikachu",
+      "weight": 60,
+      "height": 4
+    }
+  ]
+}
+```
+
+#### Buscar Time por ID Única (output): /api/teams/id/{id}
+//TODO
+```json
+{
+  "owner": "gabriely",
+  "pokemons": [
+    {
+      "id": 9,
+      "name": "blastoise",
+      "weight": 855,
+      "height": 16
+    },
+    {
+      "id": 25,
+      "name": "pikachu",
+      "weight": 60,
+      "height": 4
+    }
+  ]
+}
+```
+
 ---
 
 ## 📝 Observações
 
 - Esta solução foi desenvolvida por Gabriely Machado Carrari, como resposta ao desafio proposto pela Triágil.
 - Para mais detalhes sobre o desafio, acesse o [link do desafio](https://github.com/triagilbr/desafio-triagil).
-- Qualquer dúvida ou problema com a solução, entre em contato via gabrielycarrari@gmail.com.
+- Qualquer dúvida ou problema com a solução só entrar em contato.
 ---
    
 ## 👩‍💻 Autora 
