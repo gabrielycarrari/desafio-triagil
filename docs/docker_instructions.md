@@ -21,11 +21,15 @@ Este arquivo fornece instruções mais detalhadas sobre como iniciar os containe
   ```bash
     docker ps
   ```
-  - Para acessar o terminal do container basta inserir o comando
+  - Para acessar o terminal do container basta inserir o comando:
   ```bash
     docker exec -it desafio-backend /bin/bash
   ```
-  - Nota: Ao executar esses comandos, abra um novo terminal e mantenha o terminal que iniciou os containers aberto para garantir o funcionamento correto do ambiente.
+  - E depois acessar o diretório do projeto dentro do container:
+  ```bash
+    cd /app
+  ```
+  - Nota: Para executar esses comandos, abra um novo terminal e mantenha o terminal que iniciou os containers aberto para garantir o funcionamento correto do ambiente.
 
 ---
 Qualquer dúvida entre em contato! 👋🏽
