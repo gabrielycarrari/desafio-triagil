@@ -185,5 +185,5 @@ Entre em contato! 👋🏽
 
 ---
 
-## 📃 Licença //TODO
+## 📃 Licença
 Esse repositório está licenciado pela MIT LICENSE. Para mais informações detalhadas, leia o arquivo LICENSE contido nesse repositório.
