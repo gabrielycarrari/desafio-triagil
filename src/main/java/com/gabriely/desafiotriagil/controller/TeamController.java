@@ -1,5 +1,6 @@
 package com.gabriely.desafiotriagil.controller;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -92,7 +93,7 @@ public class TeamController {
         try {
             List<Team> teams = teamService.findByOwner(user);
 
-            /* Verifica se existe algum time registrado, se não dispara um erro NOT_FOUND */
+            /* Verifica se existe algum time registrado, se não, responde com status NOT_FOUND */
             if (teams.isEmpty()) {
                 String message = "Nenhum time encontrado.";
                 System.err.println(message);
@@ -134,12 +135,15 @@ public class TeamController {
 
             Set<String> listPokemonsName = new HashSet<>();
             for (String namePokemon : teamRequest.getPokemons()){
+                String namePokemonFormatado = this.formatNamePokemon(namePokemon);
+
+
 
                 /* Tenta adicionar o pokémons na lista,
                  * se não conseguir é porque ele já foi adicionado antes e está repetido,
                  * dispara erro.
                  */
-                if (!listPokemonsName.add(namePokemon)) {
+                if (!listPokemonsName.add(namePokemonFormatado)) {
                     throw new NegocioException(String.format(
                         "Pokémon %s já está no time e não pode ser repetido.", namePokemon));
                 }
@@ -148,11 +152,11 @@ public class TeamController {
                  * Se sim, apenas adiciona ele na lista
                  * Se não, procura as informações na API externa
                  */
-                Pokemon pokemonBanco = pokemonService.findByName(namePokemon);
+                Pokemon pokemonBanco = pokemonService.findByName(namePokemonFormatado);
                 if(pokemonBanco != null){
                     team.getPokemons().add(pokemonBanco);
                 }else{
-                    Pokemon pokemonAPI = pokeAPIService.getPokemon(namePokemon);
+                    Pokemon pokemonAPI = pokeAPIService.getPokemon(namePokemonFormatado, namePokemon);
                     team.getPokemons().add(pokemonAPI);
                 }
             }
@@ -188,5 +192,25 @@ public class TeamController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("Ocorreu um erro: " + e.getMessage()));
         }
 
+    }
+
+    /* Método para formatar o nome do pokémon de acordo com a pokéApi */
+    private String formatNamePokemon(String namePokemon) {
+        namePokemon = namePokemon.toLowerCase();
+
+        namePokemon = Normalizer.normalize(namePokemon, Normalizer.Form.NFD)
+                       .replaceAll("\\p{InCombiningDiacriticalMarks}+", ""); // Retirando os acentos
+
+        if (namePokemon.endsWith(".")) {
+            namePokemon = namePokemon.substring(0, namePokemon.length() - 1);
+        }
+        namePokemon = namePokemon.replace(" ", "-");
+        namePokemon = namePokemon.replace(".", "-");
+        namePokemon = namePokemon.replace("'", "");
+        namePokemon = namePokemon.replace(":", "-");
+        namePokemon = namePokemon.replace("♀", "-f");
+        namePokemon = namePokemon.replace("♂", "-m");
+
+        return namePokemon;
     }
 }
