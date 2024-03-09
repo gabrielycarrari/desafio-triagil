@@ -14,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -29,7 +30,8 @@ import lombok.experimental.SuperBuilder;
 public class Team {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) // TODO: verificar isso
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="team_sequence")
+    @SequenceGenerator(name="team_sequence", sequenceName="team_seq", allocationSize = 1)
     private Long id;
 
     @NotEmpty(message = "O campo owner é obrigatório.")
