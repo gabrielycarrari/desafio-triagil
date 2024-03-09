@@ -43,7 +43,7 @@ Este repositório contém uma solução para o desafio proposto pela Triágil, q
    ```bash
    git clone https://github.com/gabrielycarrari/desafio-triagil.git
    ```
-   
+
 2. **Iniciar os Containers**
    - O projeto inclui dois containers Docker:
      - **desafio-backend**: API desenvolvida em Java com Spring Boot e Maven, rodando na porta 8181.
@@ -53,11 +53,11 @@ Este repositório contém uma solução para o desafio proposto pela Triágil, q
    - O repositório também está configurado para uso com Dev Containers, uma extensão do Visual Studio Code que permite o uso de um container Docker como um ambiente de desenvolvimento.
       - Para usá-lo, basta instalar a extensão Dev Containers no Visual Studio Code e usar a opção "Open Folder in Container" com o diretório no qual o projeto foi clonado. Com isso, o container será criado ou iniciado automaticamente.
       - Certifique-se de que o Docker esteja instalado e em execução em sua máquina antes de iniciar o Dev Containers.
-   
+
 
 3. **Instalar as dependências**
    - Caso seja a primeira execução instale as dependências pelo terminal do container:
-     
+
       ```bash
       mvn install
       ```
@@ -67,8 +67,8 @@ Este repositório contém uma solução para o desafio proposto pela Triágil, q
       - Pelo terminal do container:
         ```bash
            mvn spring-boot:run
-        ``` 
-      - Ou caso esteja utilizando o Visual Studio Code, apenas clique no botão de executar a aplicação. 
+        ```
+      - Ou caso esteja utilizando o Visual Studio Code, apenas clique no botão de executar a aplicação.
    - A API estará disponível em `http://localhost:8181`.
 
 
@@ -83,80 +83,284 @@ Este repositório contém uma solução para o desafio proposto pela Triágil, q
 #### Criar Time (input): /api/teams
 ```json
 {
-  "user": "gabriely",
-  "team": [
-    "blastoise",
-    "pikachu",
-    "charizard",
-    "venusaur",
-    "lapras",
-    "dragonite"
+  "owner": "gabriely",
+  "pokemons": [
+    "mr.rime",
+    "ho-oh",
+    "iron moth",
+    "mime Jr.",
+    "flabébé",
+    "porygon2",
+    "farfetch'd",
+    "nidoran♀",
+    "type:null"
   ]
 }
 ```
 
-
 #### Listar Todos os Times (output): /api/teams
-//TODO
 ```json
-{
-  "owner": "gabriely",
-  "pokemons": [
-    {
-      "id": 9,
-      "name": "blastoise",
-      "weight": 855,
-      "height": 16
-    },
-    {
-      "id": 25,
-      "name": "pikachu",
-      "weight": 60,
-      "height": 4
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "owner": "gabriely",
+    "pokemons": [
+      {
+        "id": 866,
+        "name": "mr-rime",
+        "height": 15,
+        "weight": 582
+      },
+      {
+        "id": 250,
+        "name": "ho-oh",
+        "height": 38,
+        "weight": 1990
+      },
+      {
+        "id": 994,
+        "name": "iron-moth",
+        "height": 12,
+        "weight": 360
+      },
+      {
+        "id": 439,
+        "name": "mime-jr",
+        "height": 6,
+        "weight": 130
+      },
+      {
+        "id": 669,
+        "name": "flabebe",
+        "height": 1,
+        "weight": 1
+      },
+      {
+        "id": 233,
+        "name": "porygon2",
+        "height": 6,
+        "weight": 325
+      },
+      {
+        "id": 83,
+        "name": "farfetchd",
+        "height": 8,
+        "weight": 150
+      },
+      {
+        "id": 29,
+        "name": "nidoran-f",
+        "height": 4,
+        "weight": 70
+      },
+      {
+        "id": 772,
+        "name": "type-null",
+        "height": 19,
+        "weight": 1205
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "owner": "gaby",
+    "pokemons": [
+      {
+        "id": 1005,
+        "name": "roaring-moon",
+        "height": 20,
+        "weight": 3800
+      },
+      {
+        "id": 95,
+        "name": "onix",
+        "height": 88,
+        "weight": 2100
+      },
+      {
+        "id": 38,
+        "name": "ninetales",
+        "height": 11,
+        "weight": 199
+      },
+      {
+        "id": 79,
+        "name": "slowpoke",
+        "height": 12,
+        "weight": 360
+      },
+      {
+        "id": 92,
+        "name": "gastly",
+        "height": 13,
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "owner": "gabriely",
+    "pokemons": [
+      {
+        "id": 25,
+        "name": "pikachu",
+        "height": 4,
+        "weight": 60
+      },
+      {
+        "id": 9,
+        "name": "blastoise",
+        "height": 16,
+        "weight": 855
+      },
+      {
+        "id": 149,
+        "name": "dragonite",
+        "height": 22,
+        "weight": 2100
+      },
+      {
+        "id": 6,
+        "name": "charizard",
+        "height": 17,
+        "weight": 905
+      }
+    ]
+  }
+]
 ```
 
 #### Listar Todos os Times por Usuário (output): /api/teams/{user}
-//TODO
 ```json
-{
-  "owner": "gabriely",
-  "pokemons": [
-    {
-      "id": 9,
-      "name": "blastoise",
-      "weight": 855,
-      "height": 16
-    },
-    {
-      "id": 25,
-      "name": "pikachu",
-      "weight": 60,
-      "height": 4
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "owner": "gabriely",
+    "pokemons": [
+      {
+        "id": 866,
+        "name": "mr-rime",
+        "height": 15,
+        "weight": 582
+      },
+      {
+        "id": 250,
+        "name": "ho-oh",
+        "height": 38,
+        "weight": 1990
+      },
+      {
+        "id": 994,
+        "name": "iron-moth",
+        "height": 12,
+        "weight": 360
+      },
+      {
+        "id": 439,
+        "name": "mime-jr",
+        "height": 6,
+        "weight": 130
+      },
+      {
+        "id": 669,
+        "name": "flabebe",
+        "height": 1,
+        "weight": 1
+      },
+      {
+        "id": 233,
+        "name": "porygon2",
+        "height": 6,
+        "weight": 325
+      },
+      {
+        "id": 83,
+        "name": "farfetchd",
+        "height": 8,
+        "weight": 150
+      },
+      {
+        "id": 29,
+        "name": "nidoran-f",
+        "height": 4,
+        "weight": 70
+      },
+      {
+        "id": 772,
+        "name": "type-null",
+        "height": 19,
+        "weight": 1205
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "owner": "gabriely",
+    "pokemons": [
+      {
+        "id": 25,
+        "name": "pikachu",
+        "height": 4,
+        "weight": 60
+      },
+      {
+        "id": 9,
+        "name": "blastoise",
+        "height": 16,
+        "weight": 855
+      },
+      {
+        "id": 149,
+        "name": "dragonite",
+        "height": 22,
+        "weight": 2100
+      },
+      {
+        "id": 6,
+        "name": "charizard",
+        "height": 17,
+        "weight": 905
+      }
+    ]
+  }
+]
 ```
 
 #### Buscar Time por ID Única (output): /api/teams/id/{id}
-//TODO
 ```json
 {
-  "owner": "gabriely",
+  "id": 2,
+  "owner": "gaby",
   "pokemons": [
     {
-      "id": 9,
-      "name": "blastoise",
-      "weight": 855,
-      "height": 16
+      "id": 1005,
+      "name": "roaring-moon",
+      "height": 20,
+      "weight": 3800
     },
     {
-      "id": 25,
-      "name": "pikachu",
-      "weight": 60,
-      "height": 4
+      "id": 95,
+      "name": "onix",
+      "height": 88,
+      "weight": 2100
+    },
+    {
+      "id": 38,
+      "name": "ninetales",
+      "height": 11,
+      "weight": 199
+    },
+    {
+      "id": 79,
+      "name": "slowpoke",
+      "height": 12,
+      "weight": 360
+    },
+    {
+      "id": 92,
+      "name": "gastly",
+      "height": 13,
+      "weight": 1
     }
   ]
 }
@@ -170,10 +374,10 @@ Este repositório contém uma solução para o desafio proposto pela Triágil, q
 - Para mais detalhes sobre o desafio, acesse o [link do desafio](https://github.com/triagilbr/desafio-triagil).
 - Qualquer dúvida ou problema com a solução só entrar em contato.
 ---
-   
-## 👩‍💻 Autora 
+
+## 👩‍💻 Autora
   <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/73599857?v=4" width="100px;" alt=""/>
- 
+
 
 Feito com ❤️ por Gabriely Machado Carrari </br>
 Entre em contato! 👋🏽
