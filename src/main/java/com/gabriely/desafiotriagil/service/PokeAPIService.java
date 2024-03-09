@@ -31,7 +31,7 @@ public class PokeAPIService {
      * @throws HttpClientErrorException.NotFound - Exceção lançada quando o pokémon não é encontrado
      * @throws Exception - Exceção lançada quando ocorre outros erros
      */
-    public Pokemon getPokemon(String name) {
+    public Pokemon getPokemon(String name, String nomeOriginal) {
         String urlPokemon = url + "/pokemon/" + name;
 
         try {
@@ -39,7 +39,7 @@ public class PokeAPIService {
             Pokemon pokomonApi = objectMapper.readValue(json, Pokemon.class);
             return pokomonApi;
         } catch (HttpClientErrorException.NotFound e) {
-            throw new NegocioException("Pokémon " + name + " não encontrado!");
+            throw new NegocioException("Pokémon " + nomeOriginal + " não encontrado!");
         }catch (Exception e){
             throw new NegocioException("Ocorreu um erro: " + e.getMessage());
         }
